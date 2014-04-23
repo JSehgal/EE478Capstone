@@ -1,20 +1,24 @@
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
-
-img1 = cv2.imread('picamphotos/image802.jpeg',0)  #queryimage # left image
-img2 = cv2.imread('picamphotos/image802.jpeg',0) #trainimage # right image
-FindEpilines(img1, img2)
+#from matplotlib import pyplot as plt
 
 #### Extract depth
 def ExtractDepth(img1, img2):
-	stereo = cv2.createStereoBM(numDisparities=16, blockSize=15)
+	stereo  = cv2.StereoBM(cv2.STEREO_BM_BASIC_PRESET, ndisparities=16, SADWindowSize=15)
 	disparity = stereo.compute(img1,img2)
-	plt.imshow(disparity,'gray')
-	plt.show()
+	cv2.imwrite('depth.jpg', disparity)
+	#plt.imshow(disparity,'gray')
+	#plt.show()
+
+
+img1 = cv2.imread('image802.jpg', cv2.CV_LOAD_IMAGE_GRAYSCALE) # left image
+img2 = cv2.imread('image803.jpg', cv2.CV_LOAD_IMAGE_GRAYSCALE) # right image
+#img1 = cv2.cvtColor(img1, cv2.COLO)
+ExtractDepth(img1, img2)
+
 
 ##### Find Epilines
-def FindEpiLines(img1, img2):
+def FindEpilines(img1, img2):
 
 	sift = cv2.SIFT()
 
@@ -80,3 +84,5 @@ def drawlines(img1,img2,lines,pts1,pts2):
         img1 = cv2.circle(img1,tuple(pt1),5,color,-1)
         img2 = cv2.circle(img2,tuple(pt2),5,color,-1)
     return img1,img2
+
+
