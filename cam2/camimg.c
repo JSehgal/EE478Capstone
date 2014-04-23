@@ -30,7 +30,7 @@
 * Local Macro Declarations                                                    *
 ******************************************************************************/
 
-#define PRU_NUM 	 0
+#define PRU_NUM 	 1
 #define ADDEND1	 	 0x98765400u
 #define ADDEND2		 0x12345678u
 #define ADDEND3		 0x10210210u
@@ -82,7 +82,7 @@ static unsigned int *sharedMem_int;
 	FILE* outfile;
 
 static unsigned int gram[160][120];
-__attribute__((aligned (16)));
+__attribute__((aligned (16)))
 unsigned char cairobuff[128000];
 
 
@@ -93,7 +93,8 @@ cairo_t *c;
 * Global Function Definitions                                                 *
 ******************************************************************************/
 
-void init_graphicslib(void)
+void
+init_graphicslib(void)
 {
 	int stride;
 	stride=cairo_format_stride_for_width(CAIRO_FORMAT_RGB16_565, 160);
@@ -112,7 +113,8 @@ int reverse(int x, int bits)
     return x >> (32 - bits);
 }
 
-unsigned short int rev2(unsigned short int v)
+unsigned short int
+rev2(unsigned short int v)
 {
 	int i;
 	unsigned short int q=0;
@@ -131,13 +133,11 @@ unsigned short int rev2(unsigned short int v)
 	return(q);
 }
 
-void ram2cairo(void)
+void
+ram2cairo(void)
 {
-	int x;
-	int y;
-	unsigned int p1;
-	unsigned int p2;
-	unsigned int p3;
+	int x, y;
+	unsigned int p1, p2, pt;
 	unsigned int* bufp;
 	
 	bufp=(unsigned int*) cairobuff;
@@ -180,7 +180,9 @@ void dumpdata(void)
 			v1=*test++;
 			
 
-	
+			
+			
+			
 			rgb565=((unsigned short int)v1)<<8;
 			rgb565=rgb565 | ((unsigned short int)v2);
 			
@@ -278,7 +280,7 @@ int main (void)
 					// we have received the ack!
 					dumpdata(); // Store to file
 					sharedMem_int[OFFSET_SHAREDRAM] = 99;
-					fin = 1;
+					fin=1;
 					printf("Ack\n");
 				}
 			} while(!fin);
@@ -292,7 +294,7 @@ int main (void)
  		   	
 
 		fclose(outfile);
-		ram2cairo(); // insert video ram into the cairo buffer
+ram2cairo(); // insert video ram into the cairo buffer
 				if (CAIRO_HAS_PNG_FUNCTIONS)
 				{
 					sprintf(fname_new, "img.png");
