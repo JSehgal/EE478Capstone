@@ -15,7 +15,7 @@
 #include <string.h>
 #include <cairo/cairo.h>
 
-#include <i2cfunc.h>
+#include "i2cfunc.h"
 
 // Driver header file
 #include "prussdrv.h"
