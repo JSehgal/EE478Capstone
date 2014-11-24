@@ -6,7 +6,7 @@
 #include <stdio.h> 
 #include <string.h>
 #include <math.h>
-#include <i2cfunc.h>
+#include "i2cfunc.h"
 #include <stdio.h> 
 #include <linux/i2c.h>
 #include <linux/i2c-dev.h>
