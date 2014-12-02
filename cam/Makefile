@@ -1,5 +1,5 @@
 #
-# Execute 'make' to create prucode.bin and cam_app
+# Execute 'make' to create prucode.bin and adc_app
 # Other options:
 # make clean
 # make all
@@ -9,15 +9,15 @@
 # make clean
 #
 
-pru = prucode_cam
-project = cam_app
-dtfrag = BB-BONE-OVCAM-00A0
+pru = prucode_adc
+project = adc_app
+dtfrag = BB-BONE-HSADC-00A0
 
 LIB_PATH = .
-LIBRARIES = pthread prussdrv m i2cfunc cairo
+LIBRARIES = pthread prussdrv m cairo
 INCLUDES = -I. ${LIB_PATH}
 
-SOURCES =  camctrl.c camimg.c
+SOURCES =  adc.c
 OBJECTS = $(SOURCES:%.c=%.o)
 
 EXTRA_DEFINE =
@@ -36,7 +36,7 @@ $(OBJECTS):$(@:.o=.c)
 	$(CC) $(CFLAGS) -c -o $@ $(@:.o=.c)
 
 $(project) : $(OBJECTS)
-	$(CC) $(OBJECTS) $(LIB_PATH:%=-L%) $(LIBRARIES:%=-l%) -o cam_app
+	$(CC) $(OBJECTS) $(LIB_PATH:%=-L%) $(LIBRARIES:%=-l%) -o adc_app
 
 
 clean :

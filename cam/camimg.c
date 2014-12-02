@@ -30,7 +30,7 @@
 * Local Macro Declarations                                                    *
 ******************************************************************************/
 
-#define PRU_NUM 	 1
+#define PRU_NUM 	 0
 #define ADDEND1	 	 0x98765400u
 #define ADDEND2		 0x12345678u
 #define ADDEND3		 0x10210210u
