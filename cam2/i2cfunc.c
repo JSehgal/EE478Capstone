@@ -4,10 +4,10 @@
  *******************************/
 
 #include <stdio.h> 
-#include "linux/i2c.h"
-#include "linux/i2c-dev.h"
-#include "sys/ioctl.h"
-#include "fcntl.h"
+#include <linux/i2c.h>
+#include <linux/i2c-dev.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
 #include <errno.h>
 #include <time.h>
 #include "i2cfunc.h"
