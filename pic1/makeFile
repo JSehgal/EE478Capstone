@@ -4,13 +4,13 @@ CFLAGS = -c -Wall
 all: picture
 
 picture: takePicture.o BBBiolib.o
-		$(CC) takePicture.o BBBiolib.o -o picture
+	$(CC) takePicture.o BBBiolib.o -o picture
 
-takePicture.o: takePicture.c
-		$(CC) $(CFLAGS) takePicture.c
+takePicture.o: takePicture.c BBBiolib.h
+	$(CC) $(CFLAGS) takePicture.c
 
-BBBiolib.o: BBBiolib.c
-		$(CC) $(CFLAGS) BBBiolib.c
+BBBiolib.o: BBBiolib.c BBBiolib.h
+	$(CC) $(CFLAGS) BBBiolib.c
 
 clean:
-		rm -rf *o picture
+	rm -rf *o picture
